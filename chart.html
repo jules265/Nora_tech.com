@@ -17,7 +17,7 @@
                 <li><a href="#">Sale</a></li>
                 <li><a href="#">Contact</a></li>
                 <li>
-                    <input type="text" id="search" placeholder="Search products...">
+                    <input type="text" id="search" placeholder="Search products..." oninput="searchProduct()">
                     <button onclick="searchProduct()">Search</button>
                 </li>
                 <li>
@@ -39,6 +39,13 @@
                 <button id="checkout-btn">Checkout</button>
             </div>
         </section>
+        
+        <section class="products">
+            <h2>Available Products</h2>
+            <div id="product-list">
+                <!-- Product list will be populated here -->
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -47,6 +54,13 @@
 
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let products = [
+            {name: 'Laptop', price: 999.99},
+            {name: 'Smartphone', price: 499.99},
+            {name: 'Headphones', price: 199.99},
+            {name: 'Smartwatch', price: 129.99},
+            {name: 'Keyboard', price: 49.99}
+        ];
 
         function updateCart() {
             const cartItemsDiv = document.getElementById("cart-items");
@@ -59,7 +73,7 @@
             cart.forEach(item => {
                 const cartItem = document.createElement("div");
                 cartItem.classList.add("cart-item");
-                cartItem.innerHTML = `
+                cartItem.innerHTML = ` 
                     <p>${item.name} - $${item.price}</p>
                     <button onclick="removeFromCart('${item.name}')">Remove</button>
                 `;
@@ -84,6 +98,40 @@
 
         // Update the cart when the page loads
         window.onload = updateCart;
+
+        // Function to display products on the page
+        function displayProducts(filteredProducts) {
+            const productListDiv = document.getElementById("product-list");
+            productListDiv.innerHTML = ''; // Clear previous list
+            
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement("div");
+                productDiv.classList.add("product");
+                productDiv.innerHTML = `
+                    <p>${product.name} - $${product.price}</p>
+                    <button onclick="addToCart('${product.name}', ${product.price})">Add to Cart</button>
+                `;
+                productListDiv.appendChild(productDiv);
+            });
+        }
+
+        // Add a product to the cart
+        function addToCart(productName, productPrice) {
+            const product = {name: productName, price: productPrice};
+            cart.push(product);
+            localStorage.setItem('cart', JSON.stringify(cart));  // Update cart in localStorage
+            updateCart();  // Update the cart UI
+        }
+
+        // Search products based on user input
+        function searchProduct() {
+            const searchQuery = document.getElementById("search").value.toLowerCase();
+            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery));
+            displayProducts(filteredProducts);
+        }
+
+        // Display all products initially
+        displayProducts(products);
     </script>
 </body>
 </html>

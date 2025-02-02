@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy Now - Nora Tech</title>
+    <link rel="stylesheet" href="buy.css">
+</head>
+<body>
+    <header>
+        <h1>Nora Tech - Buy Now</h1>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart 🛒</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="product-details">
+                <!-- Product image will be dynamically loaded here -->
+                <img id="product-image" src="" alt="Product Image" class="product-image">
+                <h2 id="product-name">Product: </h2>
+                <p id="product-description">Product description goes here...</p>
+                <p class="price" id="product-price">Price: </p>
+                <button id="buy-now-btn">Buy Now</button>
+            </div>
+
+            <div class="order-form">
+                <h3>Enter Your Details</h3>
+                <form id="order-form">
+                    <input type="text" name="full-name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <textarea name="address" rows="4" placeholder="Shipping Address" required></textarea>
+                    <input type="submit" value="Place Order">
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Nora Tech. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productName = urlParams.get('product');
+        const productPrice = urlParams.get('price');
+        const productImage = urlParams.get('image');
+        const productDescription = urlParams.get('description');
+
+        document.getElementById("product-name").textContent = `Product: ${productName}`;
+        document.getElementById("product-description").textContent = productDescription || "No description available";
+        document.getElementById("product-price").textContent = `Price: $${productPrice}`;
+        document.getElementById("product-image").src = productImage || 'default-image.jpg';
+
+        // Handle confirming the purchase
+        document.getElementById("buy-now-btn").addEventListener("click", () => {
+            alert(`You have purchased the ${productName} for $${productPrice}`);
+            removeProductFromCart(productName);
+        });
+
+        function removeProductFromCart(productName) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart = cart.filter(item => item.name !== productName);  // Remove product from cart
+            localStorage.setItem('cart', JSON.stringify(cart));  // Save the updated cart
+        }
+    </script>
+</body>
+</html>
