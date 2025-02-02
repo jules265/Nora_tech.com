@@ -104,6 +104,33 @@
         }
 
         window.onload = updateCart;
+
+    
+    // function buyNow(productName) {
+    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //     let orders = JSON.parse(localStorage.getItem('orders')) || [];
+        
+    //     const product = cart.find(item => item.name === productName);
+    //     if (product) {
+    //         orders.push(product);
+    //         cart = cart.filter(item => item.name !== productName);
+
+    //         localStorage.setItem('orders', JSON.stringify(orders));
+    //         localStorage.setItem('cart', JSON.stringify(cart));
+
+    //         updateCart();
+    //         alert("Order placed successfully!");
+    //     }
+    // }
+
+    // function updateCart() {
+    //     let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    //     document.getElementById("cart-count").textContent = cart.length;
+    // }
+
+    // window.onload = updateCart;
+
+
     </script>
 </body>
 </html>

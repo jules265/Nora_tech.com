@@ -16,7 +16,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="new-arrival.html">New Arrivals</a></li>
                 <li><a href="#">Sale</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="contact.html">Contact</a></li>
                 <li>
                     <input type="text" id="search" placeholder="Search products..." oninput="searchProduct()">
                     <button onclick="searchProduct()">Search</button>
@@ -101,6 +101,26 @@
             displayProducts(products);
             updateCartCount();
         };
+//         <script>
+//     function addToCart(productName) {
+//         let cart = JSON.parse(localStorage.getItem('cart')) || [];
+//         const product = products.find(p => p.name === productName);
+//         if (product) {
+//             cart.push(product);
+//             localStorage.setItem('cart', JSON.stringify(cart));
+//             updateCartCount();
+//         }
+//     }
+
+//     function updateCartCount() {
+//         document.getElementById("cart-count").textContent = JSON.parse(localStorage.getItem('cart'))?.length || 0;
+//     }
+
+//     window.onload = function () {
+//         updateCartCount();
+//     };
+// </script>
+
     </script>
 </body>
 </html>
