@@ -77,25 +77,26 @@
     </div>
     
     <script>
-        function updateAdminDashboard() {
-            const purchasedProductsTable = document.getElementById("purchasedProducts");
-            const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
-            
-            purchasedProductsTable.innerHTML = "";
-            purchasedProducts.forEach((product, index) => {
-                let imageUrl = product.image ? product.image : 'default-image.jpg'; // Fallback image
-                let row = `<tr>
-                    <td><img src="${imageUrl}" alt="${product.name}"></td>
-                    <td>${product.name}</td>
-                    <td>${product.quantity}</td>
-                    <td>$${product.price}</td>
-                    <td><button class="remove-btn" onclick="removeProduct(${index})">Remove</button></td>
-                </tr>`;
-                purchasedProductsTable.innerHTML += row;
-            });
+    function updateAdminDashboard() {
+    const purchasedProductsTable = document.getElementById("purchasedProducts");
+    const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+    
+    purchasedProductsTable.innerHTML = "";
+    purchasedProducts.forEach((product, index) => {
+        // Use a fallback image if no image is available
+        let imageUrl = product.image ? product.image : 'default-image.jpg'; 
+        let row = `<tr>
+            <td><img src="${imageUrl}" alt="${product.name}"></td>
+            <td>${product.name}</td>
+            <td>${product.quantity}</td>
+            <td>$${product.price}</td>
+            <td><button class="remove-btn" onclick="removeProduct(${index})">Remove</button></td>
+        </tr>`;
+        purchasedProductsTable.innerHTML += row;
+    });
 
-            updateChart(purchasedProducts);
-        }
+    updateChart(purchasedProducts);
+}
 
         function updateChart(products) {
             const ctx = document.getElementById('ordersChart').getContext('2d');

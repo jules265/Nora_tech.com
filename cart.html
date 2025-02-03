@@ -40,7 +40,7 @@
 
     <script>
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
+    
         const productImages = {
             'Laptop': 'laptop.jpg',
             'Smartphone': 'smartphone.jpg',
@@ -51,16 +51,24 @@
             'Speaker': 'Speaker.jpg',
             'Virual_Reality': 'vr.jpg',
             'Bluetooth': 'Bluetooth.jpg',
+            'Ipad': 'ipad.jpg',
+            'Television': 'tv.jpg',
+            'Tablet': 'tablet.jpg',
+            'Macos': 'macos.jpg',
+            'Infinix-Hot': 'infinixhot.jpg',
+            'Infinix': 'infinix.jpg',
+            'Projector': 'projector.jpg',
+            'Handler': 'handler.jpg',
         };
-
+    
         function updateCart() {
             const cartItemsDiv = document.getElementById("cart-items");
             const totalItems = document.getElementById("total-items");
             const totalPrice = document.getElementById("total-price");
             let total = 0;
-
+    
             cartItemsDiv.innerHTML = ""; // Clear the cart items list
-
+    
             cart.forEach(item => {
                 const cartItem = document.createElement("div");
                 cartItem.classList.add("cart-item");
@@ -73,25 +81,24 @@
                 cartItemsDiv.appendChild(cartItem);
                 total += item.price;
             });
-
+    
             totalItems.textContent = cart.length;
             totalPrice.textContent = `$${total.toFixed(2)}`;
         }
-
+    
         function removeFromCart(productName) {
             cart = cart.filter(item => item.name !== productName);  // Remove the item
             localStorage.setItem('cart', JSON.stringify(cart));  // Update localStorage
             updateCart();
         }
-
+    
         function buyNow(productName, productPrice, productImage) {
             // Redirect to the "Buy Now" page with product details
-            const productDescription = getProductDescription(productName);  // Use the same description as in the "Buy Now" page
+            const productDescription = getProductDescription(productName);
             window.location.href = `buy.html?product=${productName}&price=${productPrice}&image=${productImage}&description=${productDescription}`;
         }
-
+    
         function getProductDescription(productName) {
-            // Define a simple description for each product
             const descriptions = {
                 'Laptop': 'High performance laptop with the latest technology.',
                 'Smartphone': 'Latest model with great camera and performance.',
@@ -102,8 +109,9 @@
             };
             return descriptions[productName] || 'No description available';
         }
-
+    
         window.onload = updateCart;
     </script>
+    
 </body>
 </html>
