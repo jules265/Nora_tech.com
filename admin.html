@@ -34,9 +34,23 @@
             padding: 10px;
             text-align: left;
         }
+        img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
         canvas {
             width: 100% !important;
             max-height: 400px;
+        }
+        .remove-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
         }
     </style>
 </head>
@@ -48,9 +62,11 @@
         <table>
             <thead>
                 <tr>
+                    <th>Image</th>
                     <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Price</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody id="purchasedProducts"></tbody>
@@ -66,11 +82,14 @@
             const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
             
             purchasedProductsTable.innerHTML = "";
-            purchasedProducts.forEach(product => {
+            purchasedProducts.forEach((product, index) => {
+                let imageUrl = product.image ? product.image : 'default-image.jpg'; // Fallback image
                 let row = `<tr>
+                    <td><img src="${imageUrl}" alt="${product.name}"></td>
                     <td>${product.name}</td>
                     <td>${product.quantity}</td>
                     <td>$${product.price}</td>
+                    <td><button class="remove-btn" onclick="removeProduct(${index})">Remove</button></td>
                 </tr>`;
                 purchasedProductsTable.innerHTML += row;
             });
@@ -104,29 +123,14 @@
             });
         }
 
-        window.onload = updateAdminDashboard;
-
-        // Buy Now functionality added from the buy page
-        document.getElementById("buy-now-btn")?.addEventListener("click", () => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productName = urlParams.get('product');
-            const productPrice = urlParams.get('price');
-            
-            if (!productName || !productPrice) return;
-            
-            const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
-            const existingProduct = purchasedProducts.find(p => p.name === productName);
-
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                purchasedProducts.push({ name: productName, quantity: 1, price: productPrice });
-            }
-
+        function removeProduct(index) {
+            let purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+            purchasedProducts.splice(index, 1);
             localStorage.setItem("purchasedProducts", JSON.stringify(purchasedProducts));
-            alert(`You have purchased ${productName} for $${productPrice}`);
             updateAdminDashboard();
-        });
+        }
+
+        window.onload = updateAdminDashboard;
     </script>
 </body>
 </html>

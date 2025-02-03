@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Now - Nora Tech</title>
     <link rel="stylesheet" href="buy.css">
+    <script>
+        document.getElementById("order-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const address = document.getElementById("message").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+    
+            if (!name || !email || !address || !phone) {
+                alert("Please fill in all fields.");
+                return;
+            }
+    
+            const order = {
+                productName: productName,
+                productImage: productImage,
+                price: productPrice,
+                userName: name,
+                userEmail: email,
+                userAddress: address,
+                userPhone: phone,
+                status: "Pending"
+            };
+    
+            // Get existing orders from localStorage
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(order);
+    
+            // Save updated orders to localStorage
+            localStorage.setItem("orders", JSON.stringify(orders));
+    
+            alert("Order placed successfully!");
+            window.location.href = "index.html";  // Redirect after placing order
+        });
+    </script>
+    
 </head>
 <body>
     <header>
