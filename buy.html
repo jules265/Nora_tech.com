@@ -74,6 +74,20 @@
             cart = cart.filter(item => item.name !== productName);  // Remove product from cart
             localStorage.setItem('cart', JSON.stringify(cart));  // Save the updated cart
         }
+        document.getElementById("buy-now-btn").addEventListener("click", () => {
+    const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+    const existingProduct = purchasedProducts.find(p => p.name === productName);
+
+    if (existingProduct) {
+        existingProduct.quantity += 1;
+    } else {
+        purchasedProducts.push({ name: productName, quantity: 1, price: productPrice });
+    }
+
+    localStorage.setItem("purchasedProducts", JSON.stringify(purchasedProducts));
+    alert(`You have purchased ${productName} for $${productPrice}`);
+});
+
 
         async function handleContactForm(event) {
             event.preventDefault();

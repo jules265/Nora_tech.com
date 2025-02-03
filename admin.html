@@ -53,18 +53,7 @@
                     <th>Price</th>
                 </tr>
             </thead>
-            <tbody id="purchasedProducts">
-                <tr>
-                    <td>Product A</td>
-                    <td>10</td>
-                    <td>$100</td>
-                </tr>
-                <tr>
-                    <td>Product B</td>
-                    <td>5</td>
-                    <td>$50</td>
-                </tr>
-            </tbody>
+            <tbody id="purchasedProducts"></tbody>
         </table>
         
         <h3>Most Ordered Products</h3>
@@ -72,27 +61,71 @@
     </div>
     
     <script>
-        const ctx = document.getElementById('ordersChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Product A', 'Product B', 'Product C'],
-                datasets: [{
-                    label: 'Orders',
-                    data: [10, 5, 8],
-                    backgroundColor: ['red', 'blue', 'green'],
-                    borderColor: ['black', 'black', 'black'],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: {
-                        beginAtZero: true
+        function updateAdminDashboard() {
+            const purchasedProductsTable = document.getElementById("purchasedProducts");
+            const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+            
+            purchasedProductsTable.innerHTML = "";
+            purchasedProducts.forEach(product => {
+                let row = `<tr>
+                    <td>${product.name}</td>
+                    <td>${product.quantity}</td>
+                    <td>$${product.price}</td>
+                </tr>`;
+                purchasedProductsTable.innerHTML += row;
+            });
+
+            updateChart(purchasedProducts);
+        }
+
+        function updateChart(products) {
+            const ctx = document.getElementById('ordersChart').getContext('2d');
+            const labels = products.map(p => p.name);
+            const data = products.map(p => p.quantity);
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Orders',
+                        data: data,
+                        backgroundColor: ['red', 'blue', 'green'],
+                        borderColor: ['black', 'black', 'black'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { beginAtZero: true }
                     }
                 }
+            });
+        }
+
+        window.onload = updateAdminDashboard;
+
+        // Buy Now functionality added from the buy page
+        document.getElementById("buy-now-btn")?.addEventListener("click", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            const productPrice = urlParams.get('price');
+            
+            if (!productName || !productPrice) return;
+            
+            const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+            const existingProduct = purchasedProducts.find(p => p.name === productName);
+
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                purchasedProducts.push({ name: productName, quantity: 1, price: productPrice });
             }
+
+            localStorage.setItem("purchasedProducts", JSON.stringify(purchasedProducts));
+            alert(`You have purchased ${productName} for $${productPrice}`);
+            updateAdminDashboard();
         });
     </script>
 </body>
