@@ -4,135 +4,96 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            margin: 0;
+            margin: 20px;
+            background-color: #f4f4f4;
         }
-        .sidebar {
-            width: 250px;
-            background: #333;
-            color: white;
+        .container {
+            max-width: 900px;
+            margin: auto;
+            background: white;
             padding: 20px;
-            height: 100vh;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
         }
-        .sidebar h2 {
+        h2 {
             text-align: center;
-        }
-        .main-content {
-            flex: 1;
-            padding: 20px;
-        }
-        .card {
-            background: #f4f4f4;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 5px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
         }
         th, td {
-            border: 1px solid #ddd;
             padding: 10px;
             text-align: left;
         }
-        th {
-            background: #555;
-            color: white;
-        }
-        .product-image {
-            width: 50px;
-            height: 50px;
-            object-fit: cover;
-            border-radius: 5px;
+        canvas {
+            width: 100% !important;
+            max-height: 400px;
         }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2>Admin Panel</h2>
-        <ul>
-            <li>Dashboard</li>
-            <li>Orders</li>
-            <li>Users</li>
-            <li>Settings</li>
-        </ul>
-    </div>
-    <div class="main-content">
-        <h1>Dashboard</h1>
-        <div class="card">
-            <h3>Total Users: <span id="userCount">0</span></h3>
-        </div>
-        <h2>Recent Orders</h2>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        
+        <h3>Purchased Products</h3>
         <table>
             <thead>
                 <tr>
-                    <th>Order ID</th>
-                    <th>Product</th>
-                    <th>Image</th>
+                    <th>Product Name</th>
                     <th>Quantity</th>
-                    <th>Status</th>
+                    <th>Price</th>
                 </tr>
             </thead>
-            <tbody id="ordersTable">
+            <tbody id="purchasedProducts">
+                <tr>
+                    <td>Product A</td>
+                    <td>10</td>
+                    <td>$100</td>
+                </tr>
+                <tr>
+                    <td>Product B</td>
+                    <td>5</td>
+                    <td>$50</td>
+                </tr>
             </tbody>
         </table>
+        
+        <h3>Most Ordered Products</h3>
+        <canvas id="ordersChart"></canvas>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const users = 120;
-
-            document.getElementById("userCount").textContent = users;
-            const tableBody = document.getElementById("ordersTable");
-
-            if (cart.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="5">No orders found</td></tr>';
-                return;
-            }
-
-            cart.forEach((item, index) => {
-                const row = document.createElement("tr");
-                row.innerHTML = `
-                    <td>${index + 1}</td>
-                    <td>${item.name}</td>
-                    <td><img src="${item.imageUrl}" alt="${item.name}" class="product-image"></td>
-                    <td>1</td>
-                    <td>Pending</td>
-                `;
-                tableBody.appendChild(row);
-            });
-        });
-
     
-    document.addEventListener("DOMContentLoaded", function() {
-        const orders = JSON.parse(localStorage.getItem('orders')) || [];
-        const tableBody = document.getElementById("ordersTable");
-
-        if (orders.length === 0) {
-            tableBody.innerHTML = '<tr><td colspan="5">No orders found</td></tr>';
-            return;
-        }
-
-        orders.forEach((order, index) => {
-            const row = document.createElement("tr");
-            row.innerHTML = `
-                <td>${index + 1}</td>
-                <td>${order.name}</td>
-                <td><img src="${order.imageUrl}" alt="${order.name}" class="product-image"></td>
-                <td>1</td>
-                <td>Pending</td>
-            `;
-            tableBody.appendChild(row);
+    <script>
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Product A', 'Product B', 'Product C'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [10, 5, 8],
+                    backgroundColor: ['red', 'blue', 'green'],
+                    borderColor: ['black', 'black', 'black'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
         });
-    });
-
-
     </script>
 </body>
 </html>

@@ -52,29 +52,6 @@
     </footer>
 
     <script>
-
-// <script>
-//     document.getElementById("buy-now-btn").addEventListener("click", () => {
-//         let orders = JSON.parse(localStorage.getItem('orders')) || [];
-//         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-//         const order = {
-//             name: urlParams.get('product'),
-//             price: urlParams.get('price'),
-//             imageUrl: urlParams.get('image'),
-//         };
-
-//         orders.push(order);
-//         cart = cart.filter(item => item.name !== order.name);
-
-//         localStorage.setItem('orders', JSON.stringify(orders));
-//         localStorage.setItem('cart', JSON.stringify(cart));
-
-//         alert("Order placed successfully!");
-//     });
-// </script>
-
-
         const urlParams = new URLSearchParams(window.location.search);
         const productName = urlParams.get('product');
         const productPrice = urlParams.get('price');
