@@ -1,0 +1,68 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    position: relative;
+}
+ul{
+    display: flex;
+}
+ul li{
+    list-style-type: none;
+    margin: 0 10px;
+}
+ul li a{
+    color:#7a2212;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    padding: 10px 10px;
+}
+ul li a:hover{
+    border: 2px solid  rgb(207, 158, 158) ;
+    background-color: rgb(235, 228, 228);
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: black;
+}
+.image-section {
+    top: 20px;
+    position: absolute;
+    left: 50%;
+    margin-left: 100px;
+    width: 50%;
+    height: 100vh;
+}
+
+.content-section {
+    width: 50%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgb(235, 228, 228);
+    box-shadow: -5px 0 10px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
