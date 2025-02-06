@@ -1,0 +1,255 @@
+/* General Page Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 36px;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav .menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav .menu li {
+    display: inline-block;
+}
+
+nav .menu a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+nav .menu a:hover {
+    background-color: #45a049;
+    border-radius: 5px;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Sale Products Grid */
+.sale-products-grid {
+    padding: 50px 20px;
+    background-color: #ffffff;
+}
+
+.sale-products-grid h2 {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.product-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.product-item:hover {
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.product-item p {
+    font-size: 16px;
+    color: #333;
+}
+
+.product-item .price {
+    font-weight: bold;
+    font-size: 18px;
+    color: green;
+}
+
+.product-item .original-price {
+    text-decoration: line-through;
+    color: red;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.product-item button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.product-item button:hover {
+    background-color: #45a049;
+}
+
+/* Chatbot Styling */
+.chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+}
+
+.chatbot-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.chatbot-header {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.chatbot-header .chatbot-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.chatbot-body {
+    padding: 15px;
+    text-align: left;
+    background-color: #f1f1f1;
+    border-radius: 0 0 10px 10px;
+}
+
+.chat-box {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.chat-box .user-message,
+.chat-box .bot-message {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    background-color: #e1e1e1;
+}
+
+.user-message {
+    text-align: right;
+    background-color: #b0f4a7;
+}
+
+.bot-message {
+    text-align: left;
+    background-color: #f7f7f7;
+}
+
+.chatbot-body input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.chatbot-body button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-body button:hover {
+    background-color: #45a049;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+footer a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

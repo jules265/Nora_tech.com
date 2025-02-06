@@ -5,9 +5,113 @@ body {
     padding: 0;
     align-items: center;
     height: 100vh;
+    transition: background 0.3s, color 0.3
     background-color: #f4f4f4;
     position: relative;
 }
+/* Header Styles */
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+}
+body::-webkit-scrollbar{
+    display: none;
+}
+/* Navigation Menu */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #444;
+}
+
+.menu li {
+    position: relative;
+    padding: 15px;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #444;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 180px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+.dropdown-menu li {
+    padding: 10px;
+}
+
+.dropdown-menu li a {
+    color: white;
+    display: block;
+    text-decoration: none;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #666;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* Search Bar */
+#search {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+button {
+    padding: 8px 12px;
+    background-color: #555;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #777;
+}
+
+/* Shopping Cart Icon */
+#cart-icon {
+    font-size: 18px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+#cart-icon:hover {
+    color: #ffcc00;
+}
+
 ul{
     display: flex;
 }
@@ -65,4 +169,104 @@ button {
 button:hover {
     background: #0056b3;
 }
+.dark-mode {
+    background-color: #121212;
+    color: white;
+}
+.content-section {
+    transition: background 0.3s, color 0.3s;
+    padding: 20px;
+    border-radius: 10px;
+}
+.dark-mode .content-section {
+    background-color: #1e1e1e;
+    color: white;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    margin: 20px;
+    height: 24px;
+}
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+.sliders {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+.slider:before {
+    position: absolute;
+    content: "D";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+} 
+.sliders:before {
+    position: absolute;
+    content: "T";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #007bff;
+}
+input:checked + .sliders {
+    background-color: #a6ff00;
+}
+input:checked + .sliders:before{
+    transform: translateX(26px);
+}
+input:checked + .slider:before{
+    transform: translateX(26px);
+}
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 15px;
+    font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 
+footer a {
+    color: #ff9800;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

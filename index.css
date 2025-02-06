@@ -117,6 +117,43 @@ button:hover {
     color: #ffcc00;
 }
 
+.sale-products .product-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.sale-products .price {
+    color: green;
+    font-weight: bold;
+}
+
+.sale-products .original-price {
+    text-decoration: line-through;
+    color: red;
+    margin-left: 10px;
+}
+
+.sale-banner {
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.sale-banner button {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.sale-banner button:hover {
+    background-color: #e64a19;
+}
+
 /* Hero Section */
 .hero {
     text-align: center;

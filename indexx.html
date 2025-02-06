@@ -6,33 +6,63 @@
     <title>Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" href="julesportimg.png">
+    <script src="https://widget.cxgenie.ai/widget.js" data-aid="3364223f-7584-4c38-9282-9819b65cfd7e"
+		
+    data-lang="en"></script>
 </head>
 <body>
+    
     <div class="container">
         <div class="image-section">
             <img src="julesportimg.png" alt="Profile Image">
         </div>
         <div class="content-section">
             <h1>Nziza_Jules</h1>
-            <p>Web Developer | Designer | Freelancer</p>
-            <p>Full stack from Rwanda</p>
-                <h4>Visit me on my website</h4>
-                <ul>
-                    <li><a href="https://jules265.github.io/Migano.com/">Migano</a></li>
-                    <li><a href="https://jules265.github.io/Nora_tech.com/">Nora_tech</a></li>
-                    <li><a href="https://jules265.github.io/finished/first.html">College Baptiste Gacuba 2</a></li>
-                </ul>
-            <button onclick="showMessage()">Contact Me</button>
+            <p id="content">Web Developer | Designer | Freelancer</p>
+            <p id="contents">Full stack from Rwanda</p>
+            <h4 id="contentss">Visit me on my website</h4>
+            <ul>
+                <li><a href="https://jules265.github.io/Migano.com/">Migano</a></li>
+                <li><a href="https://jules265.github.io/Nora_tech.com/">Nora_tech</a></li>
+                <li><a href="https://jules265.github.io/finished/first.html">College Baptiste Gacuba 2</a></li>
+            </ul>
+            <label class="switch">
+                <input type="checkbox" onclick="toggleDarkMode()">
+                <span class="slider"></span>
+            </label>
+            <label class="switch">
+                <input type="checkbox" onclick="toggleTranslation()">
+            <span class="sliders"></span>
+            </label>
         </div>
     </div>
-    <script>
-        /* script.js */
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector("button").addEventListener("click", function () {
-        alert("Thank you for reaching out!");
-    });
-});
 
+    <footer>
+        &copy; Jules-Dev. | Right All Reserved | Designed by <a href="indexx.html">Jules-Dev</a>
+    </footer>
+    <script>
+        let translated = false;
+        function toggleDarkMode() {
+            document.body.classList.toggle("dark-mode");
+            document.querySelector(".content-section").classList.toggle("dark-mode");
+        }
+        function toggleTranslation() {
+            const content = document.getElementById("content");
+            const contents = document.getElementById("contents");
+            const contentss = document.getElementById("contentss");
+            if (!translated) {
+                content.innerText = "Muganga w'Urubuga | Umuhanzi | Umukozi wigenga";
+                contents.innerText = "Uwujuje Ibyangombwa mu Rwanda";
+                contentss.innerText = "Munsure kurubuga rwanjye.";
+                translated = true;
+            } else {
+                contents.innerText = "Full stack from Rwanda";
+                content.innerText = "Web Developer | Designer | Freelancer";
+                contentss.innerText = "Visit me on my website.";
+                translated = false;
+            }
+        }
     </script>
+
 </body>
 </html>
