@@ -4,47 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buy Now - Nora Tech</title>
-    <link rel="stylesheet" href="buy.css">
-    <script>
-        document.getElementById("order-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-    
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const address = document.getElementById("message").value.trim();
-            const phone = document.getElementById("phone").value.trim();
-    
-            if (!name || !email || !address || !phone) {
-                alert("Please fill in all fields.");
-                return;
-            }
-    
-            const order = {
-                productName: productName,
-                productImage: productImage,
-                price: productPrice,
-                userName: name,
-                userEmail: email,
-                userAddress: address,
-                userPhone: phone,
-                status: "Pending"
-            };
-    
-            // Get existing orders from localStorage
-            let orders = JSON.parse(localStorage.getItem("orders")) || [];
-            orders.push(order);
-    
-            // Save updated orders to localStorage
-            localStorage.setItem("orders", JSON.stringify(orders));
-    
-            alert("Order placed successfully!");
-            window.location.href = "index.html";  // Redirect after placing order
-        });
-    </script>
-        <script src="https://widget.cxgenie.ai/widget.js" data-aid="3364223f-7584-4c38-9282-9819b65cfd7e"
-		
-        data-lang="en"></script>
-    
+    <style>
+        /* Styles from your buy.css */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+        }
+        .menu {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .product-image {
+            max-width: 100%;
+            height: auto;
+        }
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button, input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -61,110 +81,106 @@
     <main>
         <div class="main-content">
             <div class="product-details">
-                <!-- Product image will be dynamically loaded here -->
                 <img id="product-image" src="" alt="Product Image" class="product-image">
                 <h2 id="product-name">Product: </h2>
                 <p id="product-description">Product description goes here...</p>
                 <p class="price" id="product-price">Price: </p>
-                <button id="buy-now-btn">Buy Now</button>
             </div>
 
-            <div class="contact-form"  onsubmit="handleContactForm(event)">
+            <div class="contact-form">
                 <h3>Enter Your Details</h3>
                 <form id="order-form">
                     <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required />
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
 
                     <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required />
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
 
-                    <label for="message">Address:</label>
-                    <textarea id="message" name="message" placeholder="Your Address" rows="5" required></textarea>
-        
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Your Phone" required>
+
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" placeholder="Your Address" rows="5" required></textarea>
+
                     <input type="submit" value="Place Order">
-        
+                </form>
             </div>
         </div>
     </main>
 
     <footer>
-        &copy; 2025 Nora Tech. | Right All Reserved | Designed by <a href="indexx.html">Jules-Dev</a>
+        &copy; 2025 Nora Tech. | All Rights Reserved | Designed by <a href="indexx.html">Jules-Dev</a>
     </footer>
 
     <script>
+        // Get product details from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const productName = urlParams.get('product');
         const productPrice = urlParams.get('price');
         const productImage = urlParams.get('image');
         const productDescription = urlParams.get('description');
 
+        // Update product details in the page
         document.getElementById("product-name").textContent = `Product: ${productName}`;
         document.getElementById("product-description").textContent = productDescription || "No description available";
         document.getElementById("product-price").textContent = `Price: $${productPrice}`;
         document.getElementById("product-image").src = productImage || 'default-image.jpg';
 
-        // Handle confirming the purchase
-        document.getElementById("buy-now-btn").addEventListener("click", () => {
-            alert(`You have purchased the ${productName} for $${productPrice}`);
-            removeProductFromCart(productName);
-        });
-
-        function removeProductFromCart(productName) {
-            let cart = JSON.parse(localStorage.getItem('cart')) || [];
-            cart = cart.filter(item => item.name !== productName);  // Remove product from cart
-            localStorage.setItem('cart', JSON.stringify(cart));  // Save the updated cart
-        }
-        document.getElementById("buy-now-btn").addEventListener("click", () => {
-    const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
-    const existingProduct = purchasedProducts.find(p => p.name === productName);
-
-    if (existingProduct) {
-        existingProduct.quantity += 1;
-    } else {
-        purchasedProducts.push({ name: productName, quantity: 1, price: productPrice });
-    }
-
-    localStorage.setItem("purchasedProducts", JSON.stringify(purchasedProducts));
-    alert(`You have purchased ${productName} for $${productPrice}`);
-});
-
-
-        async function handleContactForm(event) {
+        // Handle form submission
+        document.getElementById("order-form").addEventListener("submit", function(event) {
             event.preventDefault();
-            const form = event.target;
 
-            // Collect form data
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const message = form.message.value.trim();
+            // Get form values
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            const address = document.getElementById("address").value.trim();
 
-            if (!name || !email || !message) {
-                alert("All fields are required.");
+            if (!name || !email || !phone || !address) {
+                alert("Please fill in all fields.");
                 return;
             }
 
-            try {
-                // Send data to the server
-                const response = await fetch("https://formspree.io/f/mpwqavlb", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ name, email, message }),
-                });
+            // Create order object
+            const order = {
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                quantity: 1,
+                customerName: name,
+                customerEmail: email,
+                customerPhone: phone,
+                customerAddress: address,
+                orderDate: new Date().toISOString()
+            };
 
-                if (response.ok) {
-                    alert("Details sent successfully!");
-                    form.reset();
-                } else {
-                    const error = await response.text();
-                    alert(`Failed to send message: ${error}`);
-                }
-            } catch (error) {
-                console.error("Error sending message:", error);
-                alert("An error occurred while sending the message. Please try again later.");
+            // Update purchased products for admin dashboard
+            const purchasedProducts = JSON.parse(localStorage.getItem("purchasedProducts")) || [];
+            const existingProductIndex = purchasedProducts.findIndex(p => p.name === productName);
+
+            if (existingProductIndex !== -1) {
+                purchasedProducts[existingProductIndex].quantity += 1;
+            } else {
+                purchasedProducts.push({
+                    name: productName,
+                    price: productPrice,
+                    image: productImage,
+                    quantity: 1
+                });
             }
-        }
+
+            // Save to localStorage
+            localStorage.setItem("purchasedProducts", JSON.stringify(purchasedProducts));
+
+            // Save order details
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+            orders.push(order);
+            localStorage.setItem("orders", JSON.stringify(orders));
+
+            // Show success message and redirect
+            alert("Order placed successfully! Thank you for your purchase.");
+            window.location.href = "index.html";
+        });
     </script>
 </body>
 </html>
