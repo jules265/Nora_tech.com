@@ -15,6 +15,7 @@
             background-color: #333;
             color: white;
             padding: 1rem;
+            justify-items: center;
         }
         .menu {
             list-style: none;
@@ -60,9 +61,17 @@
             color: white;
             text-align: center;
             padding: 1rem;
-            position: fixed;
             bottom: 0;
             width: 100%;
+        }
+        footer a{
+            text-decoration: none;
+            color: orange;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        footer a:hover{
+            color: rgb(245, 164, 13);
+
         }
     </style>
 </head>
@@ -117,7 +126,7 @@
         </script>
 
         
-<!-- 
+
     <script>
         // Get product details from URL parameters
         const urlParams = new URLSearchParams(window.location.search);
@@ -185,8 +194,8 @@
 
             // Show success message and redirect
             alert("Order placed successfully! Thank you for your purchase.");
-            window.location.href = "index.html";
+            window.location.href = "cart.html";
         });
-    </script> -->
+    </script>
 </body>
 </html>
