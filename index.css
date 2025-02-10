@@ -21,9 +21,6 @@ header {
     padding: 15px 20px;
     text-align: center;
 }
-body::-webkit-scrollbar{
-    display: none;
-}
 /* Navigation Menu */
 .menu {
     list-style: none;
