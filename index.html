@@ -61,21 +61,26 @@
             {name: 'Speaker', price: 30.99, imageUrl: 'Speaker.jpg'},
             {name: 'Virual_Reality', price: 600.99, imageUrl: 'vr.jpg'},
             {name: 'Tablet', price: 200.00, imageUrl: 'tablet.jpg'},
-            {name: 'Television', price: 600.99, imageUrl: 'tv.jpg'},
-            {name: 'Handler', price: 600.99, imageUrl: 'handler.jpg'},
-            {name: 'Projector', price: 600.99, imageUrl: 'projector.jpg'},
-            {name: 'Macos', price: 600.99, imageUrl: 'macos.jpg'},
-            {name: 'Ipad', price: 600.99, imageUrl: 'ipad.jpg'},
-            {name: 'Infinix', price: 600.99, imageUrl: 'infinix.jpg'},
-            {name: 'Infinix-Hot', price: 600.99, imageUrl: 'infinixhot.jpg'},
-            {name: 'Canon', price: 600.99, imageUrl: 'canon.jpg'},
-            {name: 'Nikon', price: 600.99, imageUrl: 'Nikon.jpg'},
-            {name: 'Canon EOS Rebel T7i', price: 600.99, imageUrl: 'Canons.jpg'},
-            {name: 'Nikon D7500', price: 600.99, imageUrl: 'Nikon2.jpg'},
-            {name: 'Sony A7 III', price: 600.99, imageUrl: 'SonyA7.jpg'},
-            {name: 'Panasonic Lumix GH5', price: 600.99, imageUrl: 'Panasonic.jpg'},
-            {name: 'Canon PowerShot G7 X Mark III', price: 600.99, imageUrl: 'CanonPowerShot.jpg'},
-            {name: 'GoPro MAX', price: 600.99, imageUrl: 'GoProMAX.jpg'},
+            {name: 'Television', price: 650.99, imageUrl: 'tv.jpg'},
+            {name: 'Handler', price: 25.00, imageUrl: 'handler.jpg'},
+            {name: 'Projector', price: 400.69, imageUrl: 'projector.jpg'},
+            {name: 'Macos', price: 240.90, imageUrl: 'macos.jpg'},
+            {name: 'Ipad', price: 130.56, imageUrl: 'ipad.jpg'},
+            {name: 'Infinix', price: 125.76, imageUrl: 'infinix.jpg'},
+            {name: 'Infinix-Hot', price: 110.39, imageUrl: 'infinixhot.jpg'},
+            {name: 'Canon', price: 300.00, imageUrl: 'canon.jpg'},
+            {name: 'Nikon', price: 123.99, imageUrl: 'Nikon.jpg'},
+            {name: 'Canon-EOS-Rebel-T7i', price: 130.99, imageUrl: 'Canons.jpg'},
+            {name: 'Nikon D7500', price: 114.82, imageUrl: 'Nikon2.jpg'},
+            {name: 'Sony A7 III', price: 170.24, imageUrl: 'SonyA7.jpg'},
+            {name: 'Panasonic Lumix GH5', price: 200.99, imageUrl: 'Panasonic.jpg'},
+            {name: 'Canon PowerShot G7 X Mark III', price: 120.99, imageUrl: 'CanonPowerShot.jpg'},
+            {name: 'GoPro MAX', price: 230.45, imageUrl: 'GoProMAX.jpg'},
+            {name: 'Wireless Mouse', price: 230.45, imageUrl: 'wireless.jpg'},
+            {name: 'Mouse', price: 230.45, imageUrl: 'Mouse.jpg'},
+            {name: 'Iphone 14', price: 599.00, imageUrl: 'iphone14.jpg'},
+            {name: 'Iphone 15', price: 699.00, imageUrl: 'iphone15.jpg'},
+            {name: 'Iphone 16', price: 799.00, imageUrl: 'iphone16.jpg'},
 
 
         ];
@@ -106,6 +111,7 @@
                 productDiv.innerHTML = `
                     <div class="product-image" style="background-image: url(${product.imageUrl});"></div>
                     <p>${product.name} - $${product.price}</p>
+
                     <button onclick="addToCart('${product.name}')">Add to Cart</button>
                 `;
                 productListDiv.appendChild(productDiv);
