@@ -3,45 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailor-Inspired Homepage</title>
     <link rel="stylesheet" href="home.css">
-    <script defer src="home.js"></script>
+    <title>Nora_tech - Online Materials Store</title>
+    <style>
+
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">Tailor</div>
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Nora_tech</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#" data-page="home">Home</a></li>
+                <li><a href="#" data-page="products">Products</a></li>
+                <li><a href="#" data-page="about">About</a></li>
+                <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
-        </nav>
-        <div class="hero">
-            <h1>Welcome to Tailor</h1>
-            <p>We provide top-notch tailoring services</p>
-            <a href="#services" class="btn">Explore More</a>
         </div>
-    </header>
-    
-    <section id="about" class="section">
-        <h2>About Us</h2>
-        <p>We are dedicated to crafting the perfect outfit for you.</p>
-    </section>
-    
-    <section id="services" class="section">
-        <h2>Our Services</h2>
-        <p>High-quality tailoring, custom designs, and more.</p>
-    </section>
-    
-    <section id="contact" class="section">
-        <h2>Contact Us</h2>
-        <p>Get in touch for custom orders and inquiries.</p>
-    </section>
-    
+    </nav>
+
+    <main>
+        <div id="home" class="page active">
+            <div class="hero">
+                <h1>Welcome to Nora_tech</h1>
+                <p>Your premier destination for quality online materials and tech supplies</p>
+                <a href="#" class="btn" data-page="products">Browse Products</a>
+            </div>
+        </div>
+
+        <div id="products" class="page">
+            <h2>Our Products</h2>
+            <p>Discover our wide range of high-quality materials:</p>
+            <ul>
+                <li>Electronics Components</li>
+                <li>Development Boards</li>
+                <li>Sensors and Modules</li>
+                <li>Tools and Equipment</li>
+            </ul>
+        </div>
+
+        <div id="about" class="page">
+            <h2>About Nora_tech</h2>
+            <p>At Nora_tech, we're committed to providing the best quality materials for your technical projects. With years of experience in the industry, we understand the importance of reliable components and exceptional customer service.</p>
+        </div>
+
+        <div id="contact" class="page">
+            <h2>Contact Us</h2>
+            <p>Have questions? We're here to help!</p>
+            <p>Email: info@noratech.com</p>
+            <p>Phone: (555) 123-4567</p>
+        </div>
+    </main>
+
     <footer>
-        <p>&copy; 2025 Tailor. All Rights Reserved.</p>
+        <p>&copy; 2025 Nora_tech. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Router functionality
+            const pages = document.querySelectorAll('.page');
+            const navLinks = document.querySelectorAll('[data-page]');
+
+            function showPage(pageId) {
+                // Hide all pages
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Show selected page
+                const activePage = document.getElementById(pageId);
+                if (activePage) {
+                    activePage.classList.add('active');
+                    // Update URL without page reload
+                    history.pushState({page: pageId}, '', `#${pageId}`);
+                }
+            }
+
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = e.target.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            // Handle browser back/forward buttons
+            window.addEventListener('popstate', (e) => {
+                if (e.state && e.state.page) {
+                    showPage(e.state.page);
+                }
+            });
+
+            // Handle initial page load
+            const hash = window.location.hash.slice(1) || 'home';
+            showPage(hash);
+        });
+    </script>
 </body>
 </html>
