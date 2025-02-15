@@ -52,36 +52,234 @@
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         let products = [
-            {name: 'Laptop', price: 999.99, imageUrl: 'laptop.jpg'},
-            {name: 'Smartphone', price: 499.99, imageUrl: 'smartphone.jpg'},
-            {name: 'Headphones', price: 199.99, imageUrl: 'headphones.jpg'},
-            {name: 'Smartwatch', price: 129.99, imageUrl: 'smartwatch.jpg'},
-            {name: 'Keyboard', price: 49.99, imageUrl: 'keyboard.jpg'},
-            {name: 'Bluetooth', price: 80.99, imageUrl: 'Bluetooth.jpg'},
-            {name: 'Speaker', price: 30.99, imageUrl: 'Speaker.jpg'},
-            {name: 'Virual_Reality', price: 600.99, imageUrl: 'vr.jpg'},
-            {name: 'Tablet', price: 200.00, imageUrl: 'tablet.jpg'},
-            {name: 'Television', price: 650.99, imageUrl: 'tv.jpg'},
-            {name: 'Handler', price: 25.00, imageUrl: 'handler.jpg'},
-            {name: 'Projector', price: 400.69, imageUrl: 'projector.jpg'},
-            {name: 'Macos', price: 240.90, imageUrl: 'macos.jpg'},
-            {name: 'Ipad', price: 130.56, imageUrl: 'ipad.jpg'},
-            {name: 'Infinix', price: 125.76, imageUrl: 'infinix.jpg'},
-            {name: 'Infinix-Hot', price: 110.39, imageUrl: 'infinixhot.jpg'},
-            {name: 'Canon', price: 300.00, imageUrl: 'canon.jpg'},
-            {name: 'Nikon', price: 123.99, imageUrl: 'Nikon.jpg'},
-            {name: 'Canon-EOS-Rebel-T7i', price: 130.99, imageUrl: 'Canons.jpg'},
-            {name: 'Nikon D7500', price: 114.82, imageUrl: 'Nikon2.jpg'},
-            {name: 'Sony A7 III', price: 170.24, imageUrl: 'SonyA7.jpg'},
-            {name: 'Panasonic Lumix GH5', price: 200.99, imageUrl: 'Panasonic.jpg'},
-            {name: 'Canon PowerShot G7 X Mark III', price: 120.99, imageUrl: 'CanonPowerShot.jpg'},
-            {name: 'GoPro MAX', price: 230.45, imageUrl: 'GoProMAX.jpg'},
-            {name: 'Wireless Mouse', price: 230.45, imageUrl: 'wireless.jpg'},
-            {name: 'Mouse', price: 230.45, imageUrl: 'Mouse.jpg'},
-            {name: 'Iphone 14', price: 599.00, imageUrl: 'iphone14.jpg'},
-            {name: 'Iphone 15', price: 699.00, imageUrl: 'iphone15.jpg'},
-            {name: 'Iphone 16', price: 799.00, imageUrl: 'iphone16.jpg'},
-
+        {
+            name: 'Laptop',
+            price: 999.99,
+            imageUrl: 'laptop.jpg',
+            description: 'High performance laptop with the latest technology.'
+          },
+          {
+            name: 'Smartphone',
+            price: 499.99,
+            imageUrl: 'smartphone.jpg',
+            description: 'Latest model smartphone with excellent camera quality.'
+          },
+          {
+            name: 'Headphones',
+            price: 199.99,
+            imageUrl: 'headphones.jpg',
+            description: 'Noise-cancelling headphones with superior sound quality.'
+          },
+          {
+            name: 'Smartwatch',
+            price: 129.99,
+            imageUrl: 'smartwatch.jpg',
+            description: 'Stylish smartwatch with fitness tracking and notifications.'
+          },
+          {
+            name: 'Keyboard',
+            price: 49.99,
+            imageUrl: 'keyboard.jpg',
+            description: 'Ergonomic keyboard designed for a comfortable typing experience.'
+          },
+          {
+            name: 'Bluetooth',
+            price: 80.99,
+            imageUrl: 'Bluetooth.jpg',
+            description: 'Wireless Bluetooth speaker with high quality audio.'
+          },
+          {
+            name: 'Speaker',
+            price: 30.99,
+            imageUrl: 'Speaker.jpg',
+            description: 'Compact speaker perfect for small spaces and on-the-go use.'
+          },
+          {
+            name: 'Virual_Reality',
+            price: 600.99,
+            imageUrl: 'vr.jpg',
+            description: 'Immersive virtual reality device for gaming and simulation.'
+          },
+          {
+            name: 'Tablet',
+            price: 200.00,
+            imageUrl: 'tablet.jpg',
+            description: 'Lightweight tablet ideal for browsing and media consumption.'
+          },
+          {
+            name: 'Television',
+            price: 650.99,
+            imageUrl: 'tv.jpg',
+            description: 'High-definition television with vibrant colors and smart features.'
+          },
+          {
+            name: 'Handler',
+            price: 25.00,
+            imageUrl: 'handler.jpg',
+            description: 'Useful tool for managing your devices efficiently.'
+          },
+          {
+            name: 'Projector',
+            price: 400.69,
+            imageUrl: 'projector.jpg',
+            description: 'High resolution projector for home theater experiences.'
+          },
+          {
+            name: 'Macos',
+            price: 240.90,
+            imageUrl: 'macos.jpg',
+            description: 'Reliable and secure operating system for your devices.'
+          },
+          {
+            name: 'Ipad',
+            price: 130.56,
+            imageUrl: 'ipad.jpg',
+            description: 'Sleek and portable tablet with powerful performance.'
+          },
+          {
+            name: 'Infinix',
+            price: 125.76,
+            imageUrl: 'infinix.jpg',
+            description: 'Affordable smartphone with essential features and style.'
+          },
+          {
+            name: 'Infinix-Hot',
+            price: 110.39,
+            imageUrl: 'infinixhot.jpg',
+            description: 'Enhanced version of Infinix for a superior user experience.'
+          },
+          {
+            name: 'Canon',
+            price: 300.00,
+            imageUrl: 'canon.jpg',
+            description: 'Capture stunning photos with this high performance Canon camera.'
+          },
+          {
+            name: 'Nikon',
+            price: 123.99,
+            imageUrl: 'Nikon.jpg',
+            description: 'Reliable Nikon camera perfect for both beginners and pros.'
+          },
+          {
+            name: 'Canon-EOS-Rebel-T7i',
+            price: 130.99,
+            imageUrl: 'Canons.jpg',
+            description: 'Versatile Canon EOS Rebel T7i for creative photography.'
+          },
+          {
+            name: 'Nikon D7500',
+            price: 114.82,
+            imageUrl: 'Nikon2.jpg',
+            description: 'Advanced Nikon D7500 designed for high performance photography.'
+          },
+          {
+            name: 'Sony A7 III',
+            price: 170.24,
+            imageUrl: 'SonyA7.jpg',
+            description: 'Premium mirrorless camera with outstanding image quality.'
+          },
+          {
+            name: 'Panasonic Lumix GH5',
+            price: 200.99,
+            imageUrl: 'Panasonic.jpg',
+            description: 'High performance Panasonic Lumix GH5 for professional videography.'
+          },
+          {
+            name: 'Canon PowerShot G7 X Mark III',
+            price: 120.99,
+            imageUrl: 'CanonPowerShot.jpg',
+            description: 'Compact Canon PowerShot with exceptional clarity and performance.'
+          },
+          {
+            name: 'GoPro MAX',
+            price: 230.45,
+            imageUrl: 'GoProMAX.jpg',
+            description: 'Versatile action camera built for adventurous filming.'
+          },
+          {
+            name: 'Wireless Mouse',
+            price: 230.45,
+            imageUrl: 'wireless.jpg',
+            description: 'Ergonomic wireless mouse with precision tracking.'
+          },
+          {
+            name: 'Mouse',
+            price: 230.45,
+            imageUrl: 'Mouse.jpg',
+            description: 'Reliable mouse designed for everyday use.'
+          },
+          {
+            name: 'Iphone 14',
+            price: 599.00,
+            imageUrl: 'iphone14.jpg',
+            description: 'Latest Iphone 14 with innovative features and design.'
+          },
+          {
+            name: 'Iphone 15',
+            price: 699.00,
+            imageUrl: 'iphone15.jpg',
+            description: 'Next-generation Iphone 15 with cutting-edge technology.'
+          },
+          {
+            name: 'Iphone 16',
+            price: 799.00,
+            imageUrl: 'iphone16.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'DJI Matrice 300 RTK',
+            price: 799.00,
+            imageUrl: 'Baykar.png',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'ARACHNID™ Family by Red Cat',
+            price: 799.00,
+            imageUrl: 'ARACHNID.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'APUS Family ',
+            price: 799.00,
+            imageUrl: 'APUS.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'DJI Mini 2 SE',
+            price: 799.00,
+            imageUrl: 'DJI.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'Drone Hm3S ',
+            price: 799.00,
+            imageUrl: 'dronehm.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: ' Roof Prism Binoculars',
+            price: 799.00,
+            imageUrl: 'Roof.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'Porro Prism Binoculars ',
+            price: 799.00,
+            imageUrl: 'Porro.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'Night Vision Binoculars',
+            price: 799.00,
+            imageUrl: 'NightVision.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
+          {
+            name: 'Astronomy Binoculars',
+            price: 799.00,
+            imageUrl: 'Astronomy.jpg',
+            description: 'Advanced Iphone 16 delivering superior performance and design.'
+          },
 
         ];
 
