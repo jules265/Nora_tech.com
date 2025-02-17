@@ -15,19 +15,34 @@
             <div class="logo">Nora_tech</div>
             <ul class="nav-links">
                 <li><a href="#" data-page="home">Home</a></li>
-                <li><a href="#" data-page="products">Products</a></li>
                 <li><a href="#" data-page="about">About</a></li>
                 <li><a href="#" data-page="contact">Contact</a></li>
             </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+              </div>
+
         </div>
+        
     </nav>
+
+
+    <div class="overlay"></div>
+
 
     <main>
         <div id="home" class="page active">
-            <div class="hero">
+            <div class="dimension-container">
                 <h1>Welcome to Nora_tech</h1>
                 <p>Your premier destination for quality online materials and tech supplies</p>
-                <a href="#" class="btn" data-page="products">Browse Products</a>
+                <a href="index.html" class="btn" >Browse Products</a>
+                <div class="stars"></div>
+                <!-- <div class="portal"></div> -->
+                <div class="dimension-rings"></div>
+                <div class="content">
+            </div>
             </div>
         </div>
 
@@ -97,6 +112,92 @@
             // Handle initial page load
             const hash = window.location.hash.slice(1) || 'home';
             showPage(hash);
+        });
+
+
+        document.getElementById('mobile-menu').addEventListener('click', function () {
+  const navLinks = document.querySelector('ul');
+  navLinks.classList.toggle('active');
+});
+
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+const overlay = document.querySelector('.overlay');
+
+function toggleMenu() {
+    mobileMenu.classList.toggle('active');
+    navLinks.classList.toggle('active');
+    overlay.classList.toggle('active');
+    // Prevent body scrolling when menu is open
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMenu() {
+    mobileMenu.classList.remove('active');
+    navLinks.classList.remove('active');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Toggle menu when clicking hamburger
+mobileMenu.addEventListener('click', toggleMenu);
+
+// Close menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+});
+
+// Close menu when clicking overlay
+overlay.addEventListener('click', closeMenu);
+
+// Close menu when pressing Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        closeMenu();
+    }
+});
+
+ // Create stars
+ const stars = document.querySelector('.stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 4 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            stars.appendChild(star);
+        }
+
+        // Create dimension rings
+        const rings = document.querySelector('.dimension-rings');
+        for (let i = 0; i < 40; i++) {
+            const ring = document.createElement('div');
+            ring.className = 'ring';
+            ring.style.animationDelay = i * 0.2 + 's';
+            rings.appendChild(ring);
+        }
+
+        // Add mouse movement effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth - 1;
+            const mouseY = e.clientY / window.innerHeight - 1;
+            
+            const portal = document.querySelector('.portal');
+            const rings = document.querySelector('.dimension-rings');
+            
+            portal.style.transform = `
+                translate(-50%, -50%)
+                rotateX(${mouseY * 20}deg)
+                rotateY(${mouseX * 20}deg)
+            `;
+            
+            rings.style.transform = `
+                translate(-50%, -50%)
+                rotateX(${75 + mouseY * 10}deg)
+                rotateY(${mouseX * 10}deg)
+            `;
         });
     </script>
 </body>

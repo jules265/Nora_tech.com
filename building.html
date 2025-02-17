@@ -9,108 +9,7 @@
     <script defer src="script.js"></script>
     <script src="https://widget.cxgenie.ai/widget.js" data-aid="3364223f-7584-4c38-9282-9819b65cfd7e"
     data-lang="en"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, sans-serif;
-        }
-
-        :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --text-color: #1f2937;
-            --light-bg: #f3f4f6;
-        }
-
-        body {
-            background: url('mob.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            transition: background-position 0.1s ease-in-out;
-        }
-
-        nav {
-            background: rgba(255, 255, 255, 0.301);
-            padding: 1rem 5%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .menu {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            list-style: none;
-        }
-
-        .menu a {
-            text-decoration: none;
-            color: var(--text-color);
-            font-weight: 500;
-            transition: color 0.3s;
-            cursor: pointer;
-        }
-
-        .menu a:hover {
-            color: var(--primary-color);
-        }
-
-        .hero {
-            background: linear-gradient(rgba(37,99,235,0.1), rgba(37,99,235,0.05));
-            text-align: center;
-            padding: 4rem 1rem;
-            border-radius: 1rem;
-            margin: 2rem 0;
-        }
-
-        h1, h2 {
-            color: var(--text-color);
-        }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .product-item {
-            background: rgba(178, 176, 176, 0.648);
-            padding: 10px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--primary-color);
-            color: white;
-            text-decoration: none;
-            border-radius: 0.5rem;
-            transition: background 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--secondary-color);
-        }
-
-        footer {
-            background: var(--light-bg);
-            padding: 2rem 5%;
-            text-align: center;
-        }
-        .featured-products{
-            background-color: rgba(255, 255, 255, 0.744);
-        }
-    </style>
+    <link rel="stylesheet" href="building.css">
 </head>
 <body onscroll="adjustBackground()">
     <header>
@@ -153,7 +52,7 @@
 
         function adjustBackground() {
             let scrollY = window.scrollY;
-            document.body.style.backgroundPosition = `center ${scrollY * 1}px`;
+            document.body.style.backgroundPosition = `center ${scrollY * 0.3}px`;
         }
       
             let cart = JSON.parse(localStorage.getItem('cart')) || [];
