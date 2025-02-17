@@ -3,334 +3,287 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nora Tech - Electronic Device</title>
-    <link rel="stylesheet" href="index.css">
-    <link rel="icon" href="Nora_Tech_Transparent_Logo.png">
-    <script defer src="script.js"></script>
-    <script src="https://widget.cxgenie.ai/widget.js" data-aid="3364223f-7584-4c38-9282-9819b65cfd7e"
-		
-    data-lang="en"></script>
-</head>
-<body>
-    <header>
-        <h1>Nora-Tech</h1>
-        <nav>
-            <ul class="menu">
-                <li><a href="home.html">Home</a></li>
-                <li><a href="new-arrival.html">New Arrivals</a></li>
-                <li><a href="building.html">Building</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="register.html">Register</a></li>
-                <li><a href="login.html">login</a></li>
-                <li>
-                    <input type="text" id="search" placeholder="Search products..." oninput="searchProduct()">
-                    <button onclick="searchProduct()">Search</button>
-                </li>
-                <li>
-                    <a href="cart.html" id="cart-icon">🛒 Cart (<span id="cart-count">0</span>)</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="hero">
-            <h2>Welcome to Nora Tech Electronic Device</h2>
-            <p>We offer a wide range of services including online selling, job requesting, and instrument building.</p>
-        </section>
-        <section class="featured-products">
-            <h2>Available Goods</h2>
-            <div class="product-grid" id="product-list">
-                <!-- Products will be dynamically added here -->
-            </div>
-        </section>
-    </main>
-    <footer>
-        <p>&copy; 2025 Nora Tech. All rights reserved.</p>
-    </footer>
-
-    <script>
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-        let products = [
-        {
-            name: 'Laptop',
-            price: 999.99,
-            imageUrl: 'laptop.jpg',
-            description: 'High performance laptop with the latest technology.'
-          },
-          {
-            name: 'Smartphone',
-            price: 499.99,
-            imageUrl: 'smartphone.jpg',
-            description: 'Latest model smartphone with excellent camera quality.'
-          },
-          {
-            name: 'Headphones',
-            price: 199.99,
-            imageUrl: 'headphones.jpg',
-            description: 'Noise-cancelling headphones with superior sound quality.'
-          },
-          {
-            name: 'Smartwatch',
-            price: 129.99,
-            imageUrl: 'smartwatch.jpg',
-            description: 'Stylish smartwatch with fitness tracking and notifications.'
-          },
-          {
-            name: 'Keyboard',
-            price: 49.99,
-            imageUrl: 'keyboard.jpg',
-            description: 'Ergonomic keyboard designed for a comfortable typing experience.'
-          },
-          {
-            name: 'Bluetooth',
-            price: 80.99,
-            imageUrl: 'Bluetooth.jpg',
-            description: 'Wireless Bluetooth speaker with high quality audio.'
-          },
-          {
-            name: 'Speaker',
-            price: 30.99,
-            imageUrl: 'Speaker.jpg',
-            description: 'Compact speaker perfect for small spaces and on-the-go use.'
-          },
-          {
-            name: 'Virual_Reality',
-            price: 600.99,
-            imageUrl: 'vr.jpg',
-            description: 'Immersive virtual reality device for gaming and simulation.'
-          },
-          {
-            name: 'Tablet',
-            price: 200.00,
-            imageUrl: 'tablet.jpg',
-            description: 'Lightweight tablet ideal for browsing and media consumption.'
-          },
-          {
-            name: 'Television',
-            price: 650.99,
-            imageUrl: 'tv.jpg',
-            description: 'High-definition television with vibrant colors and smart features.'
-          },
-          {
-            name: 'Handler',
-            price: 25.00,
-            imageUrl: 'handler.jpg',
-            description: 'Useful tool for managing your devices efficiently.'
-          },
-          {
-            name: 'Projector',
-            price: 400.69,
-            imageUrl: 'projector.jpg',
-            description: 'High resolution projector for home theater experiences.'
-          },
-          {
-            name: 'Macos',
-            price: 240.90,
-            imageUrl: 'macos.jpg',
-            description: 'Reliable and secure operating system for your devices.'
-          },
-          {
-            name: 'Ipad',
-            price: 130.56,
-            imageUrl: 'ipad.jpg',
-            description: 'Sleek and portable tablet with powerful performance.'
-          },
-          {
-            name: 'Infinix',
-            price: 125.76,
-            imageUrl: 'infinix.jpg',
-            description: 'Affordable smartphone with essential features and style.'
-          },
-          {
-            name: 'Infinix-Hot',
-            price: 110.39,
-            imageUrl: 'infinixhot.jpg',
-            description: 'Enhanced version of Infinix for a superior user experience.'
-          },
-          {
-            name: 'Canon',
-            price: 300.00,
-            imageUrl: 'canon.jpg',
-            description: 'Capture stunning photos with this high performance Canon camera.'
-          },
-          {
-            name: 'Nikon',
-            price: 123.99,
-            imageUrl: 'Nikon.jpg',
-            description: 'Reliable Nikon camera perfect for both beginners and pros.'
-          },
-          {
-            name: 'Canon-EOS-Rebel-T7i',
-            price: 130.99,
-            imageUrl: 'Canons.jpg',
-            description: 'Versatile Canon EOS Rebel T7i for creative photography.'
-          },
-          {
-            name: 'Nikon D7500',
-            price: 114.82,
-            imageUrl: 'Nikon2.jpg',
-            description: 'Advanced Nikon D7500 designed for high performance photography.'
-          },
-          {
-            name: 'Sony A7 III',
-            price: 170.24,
-            imageUrl: 'SonyA7.jpg',
-            description: 'Premium mirrorless camera with outstanding image quality.'
-          },
-          {
-            name: 'Panasonic Lumix GH5',
-            price: 200.99,
-            imageUrl: 'Panasonic.jpg',
-            description: 'High performance Panasonic Lumix GH5 for professional videography.'
-          },
-          {
-            name: 'Canon PowerShot G7 X Mark III',
-            price: 120.99,
-            imageUrl: 'CanonPowerShot.jpg',
-            description: 'Compact Canon PowerShot with exceptional clarity and performance.'
-          },
-          {
-            name: 'GoPro MAX',
-            price: 230.45,
-            imageUrl: 'GoProMAX.jpg',
-            description: 'Versatile action camera built for adventurous filming.'
-          },
-          {
-            name: 'Wireless Mouse',
-            price: 230.45,
-            imageUrl: 'wireless.jpg',
-            description: 'Ergonomic wireless mouse with precision tracking.'
-          },
-          {
-            name: 'Mouse',
-            price: 230.45,
-            imageUrl: 'Mouse.jpg',
-            description: 'Reliable mouse designed for everyday use.'
-          },
-          {
-            name: 'Iphone 14',
-            price: 599.00,
-            imageUrl: 'iphone14.jpg',
-            description: 'Latest Iphone 14 with innovative features and design.'
-          },
-          {
-            name: 'Iphone 15',
-            price: 699.00,
-            imageUrl: 'iphone15.jpg',
-            description: 'Next-generation Iphone 15 with cutting-edge technology.'
-          },
-          {
-            name: 'Iphone 16',
-            price: 799.00,
-            imageUrl: 'iphone16.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'DJI Matrice 300 RTK',
-            price: 799.00,
-            imageUrl: 'Baykar.png',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'ARACHNID™ Family by Red Cat',
-            price: 799.00,
-            imageUrl: 'ARACHNID.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'APUS Family ',
-            price: 799.00,
-            imageUrl: 'APUS.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'DJI Mini 2 SE',
-            price: 799.00,
-            imageUrl: 'DJI.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'Drone Hm3S ',
-            price: 799.00,
-            imageUrl: 'dronehm.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: ' Roof Prism Binoculars',
-            price: 799.00,
-            imageUrl: 'Roof.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'Porro Prism Binoculars ',
-            price: 799.00,
-            imageUrl: 'Porro.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'Night Vision Binoculars',
-            price: 799.00,
-            imageUrl: 'NightVision.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-          {
-            name: 'Astronomy Binoculars',
-            price: 799.00,
-            imageUrl: 'Astronomy.jpg',
-            description: 'Advanced Iphone 16 delivering superior performance and design.'
-          },
-
-        ];
-
-        // Update cart count in header
-        function updateCartCount() {
-            document.getElementById("cart-count").textContent = cart.length;
+    <title>Nora_tech - Modern Tech Solutions</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #3b82f6;
+            --accent: #60a5fa;
+            --background: #0f172a;
+            --text: #e2e8f0;
         }
 
-        // Add product to the cart
-        function addToCart(productName) {
-            const product = products.find(p => p.name === productName);
-            if (product) {
-                cart.push(product);
-                localStorage.setItem('cart', JSON.stringify(cart));
-                updateCartCount(); // Update the cart count in the header
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, rgba(37, 99, 235, 0.1) 0%, transparent 70%);
+        }
+
+        .tech-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(96, 165, 250, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(96, 165, 250, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            animation: gridRotate 60s linear infinite;
+        }
+
+        .particles-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .logo {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+            filter: drop-shadow(0 0 30px rgba(37, 99, 235, 0.3));
+        }
+
+        .tagline {
+            font-size: clamp(1rem, 3vw, 1.25rem);
+            color: var(--accent);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-container {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .primary-cta {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .secondary-cta {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+        }
+
+        .tech-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.5s ease;
+        }
+
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .tech-icon {
+            position: absolute;
+            font-size: 1.5rem;
+            color: var(--accent);
+            opacity: 0.1;
+            animation: float 10s infinite;
+        }
+
+        @keyframes gridRotate {
+            0% {
+                transform: perspective(1000px) rotateX(60deg) translateZ(-100px);
+            }
+            100% {
+                transform: perspective(1000px) rotateX(60deg) translateZ(100px);
             }
         }
 
-        // Display all products
-        function displayProducts(filteredProducts) {
-            const productListDiv = document.getElementById("product-list");
-            productListDiv.innerHTML = ''; // Clear previous list
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+            }
+        }
+
+        .mouse-trailer {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            mix-blend-mode: screen;
+            z-index: 9999;
+            transition: transform 0.2s ease;
+        }
+
+        @media (max-width: 768px) {
+            .cta-container {
+                flex-direction: column;
+                padding: 0 2rem;
+            }
             
-            filteredProducts.forEach(product => {
-                const productDiv = document.createElement("div");
-                productDiv.classList.add("product-item");
-                productDiv.innerHTML = `
-                    <div class="product-image" style="background-image: url(${product.imageUrl});"></div>
-                    <p>${product.name} - $${product.price}</p>
+            .tech-grid {
+                background-size: 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-container">
+        <div class="tech-grid"></div>
+        <div class="particles-container"></div>
+        <div class="floating-icons"></div>
+        <div class="content">
+            <h1 class="logo">Nora_tech</h1>
+            <p class="tagline">Empowering Innovation Through Technology</p>
+            <div class="cta-container">
+                <a href="index.html" class="cta-button primary-cta">Explore Solutions</a>
+                <a href="register.html" class="cta-button secondary-cta">Get in Touch</a>
+            </div>
+        </div>
+    </div>
+    <div class="mouse-trailer"></div>
 
-                    <button onclick="addToCart('${product.name}')">Add to Cart</button>
+    <script>
+        // Mouse trailer effect
+        const mouseTrailer = document.querySelector('.mouse-trailer');
+        let mouseX = 0, mouseY = 0;
+        let trailerX = 0, trailerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            // Create particle on mouse move
+            if (Math.random() > 0.8) {
+                createParticle(e.clientX, e.clientY);
+            }
+        });
+
+        function animate() {
+            let dx = mouseX - trailerX;
+            let dy = mouseY - trailerY;
+            
+            trailerX += dx * 0.1;
+            trailerY += dy * 0.1;
+            
+            mouseTrailer.style.transform = `translate(${trailerX}px, ${trailerY}px)`;
+            
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // Particle effect
+        function createParticle(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'tech-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            
+            document.querySelector('.particles-container').appendChild(particle);
+            
+            // Animate particle
+            requestAnimationFrame(() => {
+                particle.style.opacity = '0.5';
+                particle.style.transform = `
+                    translate(
+                        ${(Math.random() - 0.5) * 100}px,
+                        ${(Math.random() - 0.5) * 100}px
+                    )
                 `;
-                productListDiv.appendChild(productDiv);
             });
+            
+            setTimeout(() => particle.remove(), 1000);
         }
 
-        // Search products
-        function searchProduct() {
-            const searchQuery = document.getElementById("search").value.toLowerCase();
-            const filteredProducts = products.filter(product => product.name.toLowerCase().includes(searchQuery));
-            displayProducts(filteredProducts);
+        // Floating tech icons
+        const techIcons = ['⚡', '💻', '🔧', '🚀', '⚙️', '📱', '🛹','🛵'];
+        function createFloatingIcons() {
+            const container = document.querySelector('.floating-icons');
+            
+            for (let i = 0; i < 20; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'tech-icon';
+                icon.textContent = techIcons[Math.floor(Math.random() * techIcons.length)];
+                
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(icon);
+            }
         }
+        createFloatingIcons();
 
-        // Initialize page
-        window.onload = function() {
-            displayProducts(products);
-            updateCartCount();
-        };
+        // Button hover effects
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('mouseover', () => {
+                createParticle(
+                    button.getBoundingClientRect().left + button.offsetWidth / 2,
+                    button.getBoundingClientRect().top + button.offsetHeight / 2
+                );
+            });
+        });
     </script>
-  <footer>
-    &copy; 2025 Nora Tech. | Right All Reserved | Designed by <a href="indexx.html">Jules-Dev</a>
-</footer>
 </body>
 </html>
